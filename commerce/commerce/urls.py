@@ -1,28 +1,45 @@
-"""commerce URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
 
 def home(request):
-    print(1)
+    print(request.GET.get('a'))
     print(type(request))
-    return HttpResponse('OK')
-print('TEST')
+    html = '''
+            <!DOCTYPE html>
+        <html>
+        <body>
+
+        <h1>This is heading 1</h1>
+        <h2>This is heading 2</h2>
+        <h3>This is heading 3</h3>
+        <h4>This is heading 4</h4>
+        <h5>This is heading 5</h5>
+        <h6>This is heading 6</h6>
+
+        </body>
+        </html>
+        '''
+
+    return HttpResponse(html)
+
+def sum(request):
+   
+    html = '''
+            <!DOCTYPE html>
+        <html>
+        <body>
+
+  SUM
+
+        </body>
+        </html>
+        '''
+
+    return HttpResponse(html)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home)
+    path('',home),
+    path('sum',sum)
 ]
